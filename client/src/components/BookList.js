@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-import {Container, ListGroup, ListGroupItem, Media} from 'reactstrap';
+import {Container} from 'reactstrap';
 import {Row, Col} from 'reactstrap';
-import {Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle, Button} from 'reactstrap';
 import '../styles/books.css';
+import '../styles/common.css';
 
 class BookList extends Component {
     state = {
@@ -15,7 +15,7 @@ class BookList extends Component {
               desc: "Overview of all the temples in Kannoor district of Kerala.",
               author: "S. Jayashanker",
               imageUrl: "www.google.com",
-              buyUrl: "www.google.com"
+              buyUrl: "https://www.google.com"
             },
             {
               id: "5e925efce8afa11fded9483d",
@@ -25,7 +25,7 @@ class BookList extends Component {
               desc: "Overview of all the temples in Kasargod district of Kerala.",
               author: "S. Jayashanker",
               imageUrl: "www.google.com",
-              buyUrl: "www.google.com"
+              buyUrl: "https://www.google.com"
             },
             {
               id: "5e925e5ee8afa11fded9483c",
@@ -35,8 +35,18 @@ class BookList extends Component {
               desc: "Temples of Kerala has a overview of all the temples in the various districts of Kerala.",
               author: "S. Jayashanker",
               imageUrl: "www.google.com",
-              buyUrl: "www.google.com"
-            }
+              buyUrl: "https://www.google.com"
+            },
+            {
+                id: "5e925e5ee8afa11fded9483c",
+                title: "Temples of Ernakulam",
+                isbn: "ABC127",
+                pubYear: 2015,
+                desc: "Temples of Ernakulam has a overview of all the temples in the various districts of Kerala.",
+                author: "S. Jayashanker",
+                imageUrl: "www.google.com",
+                buyUrl: "https://www.google.com"
+              }
         ]
     }
 
@@ -44,20 +54,24 @@ class BookList extends Component {
         const {books} = this.state;
         return (
             <Container>
+                <div>
+                    <h3 className="pageTitle">BOOKS</h3>
+                    <hr className="bigPageBreak"/>
+                </div>
                 <Row>
-                    <Col xs="6" sm="4">
-                    <Card>
-                        <CardImg top width="100%" src="/assets/318x180.svg" alt="Card image cap" className="bookImage"/>
-                        <CardBody>
-                        <CardTitle className="bookTitle">Temples of Kerala</CardTitle>
-                        <Button style={{backgroundColor: "white", fontSize: 9}} className="buyNowButton">Buy Now</Button>
-                        </CardBody>
-                    </Card>
-                    </Col>
-                    <Col xs="6" sm="4">Book 2</Col>
-                    <Col xs="6" sm="4">Book 3</Col>
+                    {books.map(({id, title, desc, imageUrl, buyUrl}) => (
+                        <Col xs="6" sm="4">
+                            <div className="bookCard">
+                                <img src={imageUrl} alt="Placeholder" className="bookImage"/>
+                                <hr className="smallPageBreak"/>
+                                <h4 className="bookTitle">{title}</h4>
+                                <a href={buyUrl} target="_blank" rel="noopener noreferrer">
+                                    <button type="button" className="buyNowButton">Buy Now</button>
+                                </a>
+                            </div>
+                        </Col>
+                    ))}
                 </Row>
-                
             </Container>
         );
     }
@@ -65,23 +79,3 @@ class BookList extends Component {
 }
 
 export default BookList;
-
-{/*
-            <Container>
-                <ListGroup horizontal>
-                    {books.map(({id, title, desc}) => (
-                        <ListGroupItem>
-                            <Media className="bookImage" href="#">
-                                <Media object alt="Placeholder image" />
-                            </Media>
-                            <Media body>
-                                <Media heading className="bookTitle">
-                                    {title}
-                                </Media>
-                                {desc}
-                            </Media>
-                        </ListGroupItem>
-                    ))}
-                </ListGroup>
-            </Container>  
-                    */}
