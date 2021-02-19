@@ -1,3 +1,3 @@
 # SJayashankerWeb
 
-A Reach website created for author S Jayashanker.
+A React website created for author S Jayashanker.
